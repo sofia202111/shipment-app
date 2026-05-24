@@ -39,8 +39,7 @@ select * from Shipments where PaisDestino='Estados Unidos ';
 -- Consulta por fecha de creación 
 SELECT *
 FROM Shipments
-WHERE FechaCreacion
-BETWEEN '2026-05-01' AND '2026-05-31';
+WHERE FechaCreacion ='2026-05-24' ;
 
 -- Consulta por fehca estimada de entrega 
 

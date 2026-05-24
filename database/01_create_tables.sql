@@ -1,4 +1,5 @@
-create database use  ShipmentDB;
+CREATE DATABASE ShipmentDB
+ use  ShipmentDB;
 use  ShipmentDB;
 CREATE TABLE Usuarios (
     Id       INT IDENTITY(1,1) PRIMARY KEY,
