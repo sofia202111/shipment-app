@@ -13,13 +13,13 @@ public class ShipmentsController : Controller
         _conn = config.GetConnectionString("DefaultConnection")!;
     }
 
-    private bool EstaLogueado()
+    private bool Login()
         => HttpContext.Session.GetString("usuario") != null;
 
     // ── LISTADO ────────────────────────────────────────────
     public IActionResult Index()
     {
-        if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+        if (!Login()) return RedirectToAction("Login", "Account");
 
         var lista = new List<Shipment>();
 
@@ -41,17 +41,17 @@ public class ShipmentsController : Controller
     // ── DETALLE ────────────────────────────────────────────
     public IActionResult Details(int id)
     {
-        if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+        if (!Login()) return RedirectToAction("Login", "Account");
 
-        var envio = BuscarPorId(id);
-        if (envio == null) return NotFound();
-        return View(envio);
+        var envi = BuscarPorId(id);
+        if (envi == null) return NotFound();
+        return View(envi);
     }
 
     // ── CREAR FORMULARIO ───────────────────────────────────
     public IActionResult Create()
     {
-        if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+        if (!Login()) return RedirectToAction("Login", "Account");
         return View();
     }
 
@@ -60,7 +60,7 @@ public class ShipmentsController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Shipment envio)
     {
-        if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+        if (!Login()) return RedirectToAction("Login", "Account");
 
         if (envio.PaisOrigen == envio.PaisDestino)
             ModelState.AddModelError("PaisDestino",
@@ -109,7 +109,7 @@ public class ShipmentsController : Controller
     // ── EDITAR FORMULARIO ──────────────────────────────────
     public IActionResult Edit(int id)
     {
-        if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+        if (!Login()) return RedirectToAction("Login", "Account");
 
         var envio = BuscarPorId(id);
         if (envio == null) return NotFound();
@@ -128,7 +128,7 @@ public class ShipmentsController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Edit(int id, Shipment envio)
     {
-        if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+        if (!Login()) return RedirectToAction("Login", "Account");
 
         var existente = BuscarPorId(id);
         if (existente == null) return NotFound();
@@ -183,7 +183,7 @@ public class ShipmentsController : Controller
     // ── CANCELAR FORMULARIO ────────────────────────────────
     public IActionResult Delete(int id)
     {
-        if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+        if (!Login()) return RedirectToAction("Login", "Account");
         var envio = BuscarPorId(id);
         if (envio == null) return NotFound();
         return View(envio);
@@ -194,7 +194,7 @@ public class ShipmentsController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult DeleteConfirmed(int id)
     {
-        if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+        if (!Login()) return RedirectToAction("Login", "Account");
 
         using var con = new SqlConnection(_conn);
         con.Open();
@@ -227,7 +227,7 @@ public class ShipmentsController : Controller
         return null;
     }
 
-    // Convierte una fila del reader en un objeto Shipment
+// lee los tipos de datoa en la base de datos 
     private static Shipment LeerShipment(SqlDataReader r) => new()
     {
         Id                   = (int)r["Id"],
