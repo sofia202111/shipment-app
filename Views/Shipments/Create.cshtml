@@ -1,0 +1,80 @@
+﻿@model ShipmentsApp.Models.Shipment
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h1 class="mb-4">Nuevo Envío</h1>
+
+        <form asp-action="Create">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Tracking Number</label>
+                    <input asp-for="TrackingNumber" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Peso KG</label>
+                    <input asp-for="PesoKg" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">País Origen</label>
+                    <input asp-for="PaisOrigen" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">País Destino</label>
+                    <input asp-for="PaisDestino" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Ciudad Origen</label>
+                    <input asp-for="CiudadOrigen" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Ciudad Destino</label>
+                    <input asp-for="CiudadDestino" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Remitente</label>
+                    <input asp-for="NombreRemitente" class="form-control" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Destinatario</label>
+                    <input asp-for="NombreDestinatario" class="form-control" />
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label class="form-label">Descripción</label>
+                    <textarea asp-for="DescripcionMercancia"
+                              class="form-control"></textarea>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Fecha Estimada</label>
+                    <input asp-for="FechaEstimadaEntrega"
+                           type="date"
+                           class="form-control" />
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Guardar
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Volver
+            </a>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,31 @@
+﻿@model ShipmentsApp.Models.Shipment
+
+@{
+    ViewData["Title"] = "Cancelar Envío";
+}
+
+<h2>¿Cancelar este envío?</h2>
+<hr />
+
+<div class="alert alert-warning">
+    El envío <strong>@Model.TrackingNumber</strong> pasará a estado
+    <strong>Cancelado</strong>. No se borrará el registro.
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Guía</dt>
+    <dd class="col-sm-9">@Model.TrackingNumber</dd>
+
+    <dt class="col-sm-3">Ruta</dt>
+    <dd class="col-sm-9">@Model.PaisOrigen → @Model.PaisDestino</dd>
+
+    <dt class="col-sm-3">Estado actual</dt>
+    <dd class="col-sm-9">@Model.EstadoTexto</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Sí, cancelar envío</button>
+    <a asp-action="Index" class="btn btn-secondary">No, volver</a>
+</form>
