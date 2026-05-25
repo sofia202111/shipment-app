@@ -16,7 +16,7 @@ public class ShipmentsController : Controller
     private bool Login()
         => HttpContext.Session.GetString("usuario") != null;
 
-    // ── LISTADO ────────────────────────────────────────────
+    // ── LISTADO 
     public IActionResult Index()
     {
         if (!Login()) return RedirectToAction("Login", "Account");
@@ -38,7 +38,7 @@ public class ShipmentsController : Controller
         return View(lista);
     }
 
-    // ── DETALLE ────────────────────────────────────────────
+    // ── DETALLE 
     public IActionResult Details(int id)
     {
         if (!Login()) return RedirectToAction("Login", "Account");
@@ -48,14 +48,14 @@ public class ShipmentsController : Controller
         return View(envi);
     }
 
-    // ── CREAR FORMULARIO ───────────────────────────────────
+    // ── CREAR FORMULARIO
     public IActionResult Create()
     {
         if (!Login()) return RedirectToAction("Login", "Account");
         return View();
     }
 
-    // ── CREAR GUARDAR ──────────────────────────────────────
+    // ── CREAR 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(Shipment envio)

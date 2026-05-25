@@ -12,8 +12,13 @@ public class AccountController : Controller
         _conn = config.GetConnectionString("DefaultConnection")!;
     }
 
-    public IActionResult Login() => View();
+    // ── FORMULARIO LOGIN ─────────────────────────────
+    public IActionResult Login()
+    {
+        return View();
+    }
 
+    // ── LOGIN ────────────────────────────────────────
     [HttpPost]
     public IActionResult Login(string email, string password)
     {
@@ -21,25 +26,33 @@ public class AccountController : Controller
         con.Open();
 
         var cmd = new SqlCommand(
-            "SELECT * FROM Usuarios WHERE Email = @email AND Password = @password", con);
+            "SELECT * FROM Usuarios WHERE Email = @email AND Password = @password",
+            con);
+
         cmd.Parameters.AddWithValue("@email", email);
         cmd.Parameters.AddWithValue("@password", password);
 
-        int encontrado = (int)cmd.ExecuteScalar();
+        using var reader = cmd.ExecuteReader();
 
-        if (encontrado == 0)
+        // Verifica si existe usuario
+        if (reader.Read())
         {
-            ViewBag.Error = "Correo o contraseña incorrectos.";
-            return View();
+            HttpContext.Session.SetString("usuario", email);
+
+            return RedirectToAction("Index", "Shipments");
         }
 
-        HttpContext.Session.SetString("usuario", email);
-        return RedirectToAction("Index", "Shipments");
+        // Si no existe
+        ViewBag.Error = "Correo o contraseña incorrectos.";
+
+        return View();
     }
 
+    // ── LOGOUT ───────────────────────────────────────
     public IActionResult Logout()
     {
         HttpContext.Session.Clear();
+
         return RedirectToAction("Login");
     }
 }

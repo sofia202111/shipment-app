@@ -5,6 +5,27 @@
     <div class="card shadow p-4">
 
         <h1 class="mb-4">Nuevo Envío</h1>
+        <div class="alert alert-secondary mt-4">
+             <h5 class="mb-3">
+                 Condiciones para crear el shipment
+            </h5>
+            <ul class="mb-0">
+            <li>
+                El país de origen no debe ser igual al país de destino.
+            </li>
+            <li>
+                El peso debe ser mayor que cero.
+            </li>
+            <li>
+                El número de guía o tracking number debe ser obligatorio y único.
+            </li>
+            <li>
+                La fecha estimada de entrega no debe ser menor que la fecha de creación.
+            </li>
+    </ul>
+     Si no se cumple estas consiciiones no se podra fuardar el reegistro hasta que se cumplan las consiciones
+
+</div>
 
         <form asp-action="Create">
 
@@ -72,15 +93,7 @@
             <a asp-action="Index" class="btn btn-secondary">
                 Volver
             </a>
-            <table>
-            <p class="text-center text-muted mt-2 small">
-                CONDICIONES PARA CREAR EL Shipment<br></br>
-            • El país de origen no debe ser igual al país de destino. <br></br>
-            • El peso debe ser mayor que cero. <br></br>
-            • El número de guía o tracking number debe ser obligatorio y único. <br></br>
-            • La fecha estimada de entrega no debería ser menor que la fecha de creación. 
-            </p>
-            </table>
+            
 
         </form>
 
