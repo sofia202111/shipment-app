@@ -123,7 +123,7 @@ public class ShipmentsController : Controller
         return View(envio);
     }
 
-    // ── EDITAR GUARDAR ─────────────────────────────────────
+    // ── EDITAR 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Edit(int id, Shipment envio)

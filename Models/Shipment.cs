@@ -41,7 +41,6 @@ public class Shipment
     [Required(ErrorMessage = "Obligatorio")]
     public DateTime FechaEstimadaEntrega { get; set; }
 
-    // Solo para mostrar el texto del estado en la vista
     public string EstadoTexto => Estado switch
     {
         0 => "Creado",
