@@ -1,3 +1,5 @@
+NOMBRE: KAREN SOFIA RAMIREZ FORERO
+
 # ShipmentsApp
 
 Plataforma web para registrar shipments, donde se puede crear, consultar, editar y cambiarle el estado a cada envío. También cuenta con un sistema de login con correo y contraseña para acceder a la aplicación.
